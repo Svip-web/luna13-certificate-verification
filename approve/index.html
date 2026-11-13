@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#151515">
+  <meta name="description" content="Подтверждение сертификата об окончании обучения в школе LUNA13.">
+  <title>Проверка сертификата — LUNA13</title>
+  <link rel="icon" href="./school-logo.png" type="image/png">
+  <style>
+    @font-face {
+      font-family: Manrope;
+      src: url("./manrope-cyrillic.woff2") format("woff2");
+      font-weight: 400 800;
+      font-display: swap;
+      unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+    @font-face {
+      font-family: Manrope;
+      src: url("./manrope-latin.woff2") format("woff2");
+      font-weight: 400 800;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    :root {
+      color-scheme: dark;
+      font-family: Manrope, Arial, sans-serif;
+      --base: #151515;
+      --surface: #171717;
+      --ink: #fff;
+      --muted: #c4c2cb;
+      --line: #ffffff2e;
+      --orange: #ffa72b;
+      --gradient: linear-gradient(90deg, #fe5f34, #ffa72b);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { position: relative; isolation: isolate; margin: 0; color: var(--ink); background: var(--base); }
+    body::before { content: ""; position: absolute; z-index: -1; inset: 0 0 auto; height: 540px; background: linear-gradient(0deg, #151515, #15151500 22%), url("./school-background.png") center bottom / cover no-repeat; }
+    a { color: inherit; text-underline-offset: .23em; }
+    a:focus-visible { outline: 2px solid #ffb858; outline-offset: 4px; }
+    .wrap { width: min(1280px, calc(100% - clamp(36px, 9.4vw, 120px))); margin-inline: auto; }
+    .skip { position: absolute; top: 12px; left: 12px; z-index: 2; transform: translateY(-160%); background: #fff; color: #151515; padding: 12px; }
+    .skip:focus { transform: translateY(0); }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 30px; }
+    .logo { display: inline-flex; align-items: center; flex: none; }
+    .logo img { display: block; width: 132px; height: auto; }
+    .school-nav { display: flex; align-items: center; gap: clamp(15px, 3.4vw, 44px); padding: 19px 18px; border: 1px solid #ffffff13; border-radius: 10px; background: #ffffff06; }
+    .school-nav a { font-size: 14px; font-weight: 700; text-decoration: none; }
+    .school-nav a:hover, .footer a:hover { color: var(--orange); }
+    .result { padding-block: clamp(32px, 5.5vw, 68px) clamp(52px, 6.5vw, 82px); text-align: center; }
+    .result-label { display: inline-flex; align-items: center; gap: 7px; margin: 0 0 22px; padding: 7px 12px; border-radius: 10px; background: #0867dc; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+    .result-label .check { display: inline-block; width: 7px; height: 12px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); }
+    h1 { max-width: 22ch; margin: 0 auto; font-size: clamp(31px, 5.8vw, 74px); font-weight: 800; line-height: 1.06; letter-spacing: -.042em; text-transform: uppercase; text-wrap: balance; }
+    h1 span { display: block; margin-top: .13em; color: var(--orange); }
+    .program { max-width: 48ch; margin: 21px auto 0; color: #f1eff6; font-size: clamp(15px, 1.6vw, 18px); line-height: 1.65; text-wrap: balance; }
+    .certificate-section { width: min(1020px, 100%); margin: 0 auto; padding: clamp(18px, 3vw, 34px); border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
+    .certificate-section h2 { margin: 0; font-size: clamp(21px, 3vw, 32px); font-weight: 800; line-height: 1.2; text-transform: uppercase; }
+    .details { margin-bottom: 22px; }
+    .details p { max-width: 66ch; margin: 13px 0 0; color: var(--muted); line-height: 1.6; }
+    .details a { color: var(--orange); }
+    .details-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px 24px; margin: 22px 0 0; padding-block: 19px; border-block: 1px solid var(--line); }
+    .details-list dt { color: var(--muted); font-size: 13px; }
+    .details-list dd { margin: 4px 0 0; font-weight: 700; line-height: 1.4; }
+    .certificate-image { display: block; width: 100%; height: auto; margin-top: 22px; border-radius: 10px; }
+    .certificate-actions { display: flex; justify-content: center; margin-top: 22px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 52px; padding: 12px 24px; border-radius: 10px; background: var(--gradient); color: #171717; font-size: 14px; font-weight: 800; text-align: center; text-decoration: none; text-transform: uppercase; }
+    .button:hover { background: #ffb556; }
+    .button .arrow { display: inline-block; width: 8px; height: 8px; border: solid currentColor; border-width: 2px 2px 0 0; transform: rotate(45deg); }
+    .footer { padding-block: 38px 42px; }
+    .footer-inner { display: grid; grid-template-columns: 1.25fr auto auto auto; align-items: start; gap: 18px 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+    .footer p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .footer a { text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-contact a { display: inline-block; margin-bottom: 5px; font-size: 18px; font-weight: 700; }
+    .footer-social { display: flex; flex-wrap: wrap; gap: 10px; }
+    .footer-social a { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: #fff; font-size: 14px; font-weight: 800; }
+    .footer-social a:hover { color: #fff; }
+    .telegram { background: #047fab; }
+    .instagram { background: linear-gradient(35deg, #b35313, #a7186e 60%, #7227b5); }
+    .payments { display: block; width: 80px; height: auto; margin-top: 5px; }
+    @media (max-width: 850px) {
+      .footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 680px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 13px; padding-block: 20px 12px; }
+      .logo img { width: 115px; }
+      .school-nav { display: grid; width: 100%; grid-template-columns: 1fr 1fr; gap: 0; padding: 4px 8px; }
+      .school-nav a { padding: 8px; font-size: 13px; }
+      .result { padding-top: 28px; }
+      .result-label { margin-bottom: 17px; }
+      .program { margin-top: 15px; }
+      .certificate-section { border-radius: 14px; }
+      .details-list { grid-template-columns: 1fr; }
+      .certificate-image { margin-top: 14px; border-radius: 5px; }
+      .certificate-actions { margin-top: 15px; }
+      .button { width: 100%; font-size: 12px; padding-inline: 12px; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Перейти к результату</a>
+  <header>
+      <div class="wrap header-inner">
+        <a class="logo" href="https://luna13.school/" aria-label="LUNA13 — главная страница">
+          <img src="./school-logo.png" width="338" height="119" alt="LUNA13" fetchpriority="high">
+        </a>
+        <nav class="school-nav" aria-label="Сайт школы">
+          <a href="https://luna13.school/#1">Про школу</a>
+          <a href="https://luna13.school/#list">Курсы</a>
+          <a href="https://luna13.school/#3">Наши преимущества</a>
+          <a href="https://luna13.school/#4">Преподаватели</a>
+        </nav>
+      </div>
+  </header>
+  <main id="content" class="wrap">
+      <section class="result" aria-labelledby="result-title">
+        <p class="result-label"><span class="check" aria-hidden="true"></span>Проверка сертификата</p>
+        <h1 id="result-title">Ваш сертификат <span>успешно подтверждён</span></h1>
+        <p class="program">Сертификат об окончании программы «Искусственный интеллект: от новичка до эксперта» школы LUNA13.</p>
+      </section>
+      <section class="certificate-section details" aria-labelledby="details-title">
+        <h2 id="details-title">Что подтверждает сертификат</h2>
+        <p>Сертификат подтверждает, что его владелец успешно прошёл обучение по указанной программе в школе LUNA13.</p>
+        <dl class="details-list">
+          <div><dt>Программа обучения</dt><dd>Искусственный интеллект: от новичка до эксперта</dd></div>
+          <div><dt>Организация, выдавшая сертификат</dt><dd>Школа искусственного интеллекта LUNA13</dd></div>
+          <div><dt>Тип документа</dt><dd>Сертификат об окончании обучения</dd></div>
+          <div><dt>Данные для сверки</dt><dd>Имя владельца, номер сертификата и дата выдачи</dd></div>
+        </dl>
+        <p>Чтобы сверить данные конкретного сертификата, отправьте его номер и дату выдачи на <a href="mailto:info@luna13.academy">info@luna13.academy</a>.</p>
+      </section>
+      <section class="certificate-section" aria-labelledby="certificate-title">
+        <h2 id="certificate-title">Образец сертификата</h2>
+        <img class="certificate-image" src="./certificate.png" width="1754" height="1241" alt="Сертификат LUNA13 об окончании программы «Искусственный интеллект: от новичка до эксперта»" decoding="async">
+        <div class="certificate-actions">
+          <a class="button" href="./certificate.png">Открыть в полном размере <span class="arrow" aria-hidden="true"></span></a>
+        </div>
+      </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-contact">
+        <a href="mailto:info@luna13.academy">info@luna13.academy</a>
+        <p>Остались вопросы? Мы на связи — пишите</p>
+      </div>
+      <div class="footer-social">
+        <a class="telegram" href="https://t.me/LUNA13_ai" aria-label="Telegram">TG</a>
+        <a class="instagram" href="https://www.instagram.com/pasha_pustovit_ai" aria-label="Instagram">IG</a>
+      </div>
+      <div>
+        <p>Florida, Miami, USA 33160</p>
+        <img class="payments" src="./school-payments.png" width="160" height="64" alt="Visa и Mastercard" loading="lazy">
+      </div>
+      <p><a href="https://luna13.school/privacy/">Политика конфиденциальности</a><br>Публичная оферта</p>
+    </div>
+  </footer>
+</body>
+</html>
