@@ -56,11 +56,48 @@
     .program { max-width: 48ch; margin: 21px auto 0; color: #f1eff6; font-size: clamp(15px, 1.6vw, 18px); line-height: 1.65; text-wrap: balance; }
     .certificate-section { width: min(1020px, 100%); margin: 0 auto; padding: clamp(18px, 3vw, 34px); border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
     .certificate-section h2 { margin: 0; font-size: clamp(21px, 3vw, 32px); font-weight: 800; line-height: 1.2; text-transform: uppercase; }
-    .details { margin-bottom: 22px; }
-    .details p { max-width: 66ch; margin: 13px 0 0; color: var(--muted); line-height: 1.6; }
-    .details-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px 24px; margin: 22px 0 0; padding-top: 19px; border-top: 1px solid var(--line); }
-    .details-list dt { color: var(--muted); font-size: 13px; }
-    .details-list dd { margin: 4px 0 0; font-weight: 700; line-height: 1.4; }
+    .details {
+      margin-bottom: 22px;
+      background: radial-gradient(ellipse at top left, #33231b, transparent 62%), var(--surface);
+    }
+    .details-heading::before {
+      content: "";
+      display: block;
+      width: 38px;
+      height: 3px;
+      margin-bottom: 16px;
+      border-radius: 3px;
+      background: var(--gradient);
+    }
+    .details-heading p { max-width: 60ch; margin: 11px 0 0; color: var(--muted); line-height: 1.6; }
+    .details-list {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      gap: 12px;
+      margin: 25px 0 0;
+    }
+    .detail-item { min-width: 0; padding: 17px; border: 1px solid #ffffff20; border-radius: 12px; background: #ffffff06; }
+    .detail-program { border-color: #ffb55b52; background: linear-gradient(145deg, #fe5f341a, #ffa72b06); }
+    .detail-item dt { color: var(--muted); font-size: 13px; font-weight: 700; line-height: 1.4; }
+    .detail-program dt { color: #ffc279; }
+    .detail-item dd { margin: 5px 0 0; font-size: 15px; font-weight: 750; line-height: 1.45; }
+    .detail-program dd { font-size: clamp(17px, 2vw, 21px); font-weight: 800; }
+    .detail-icon {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 13px;
+      border-radius: 9px;
+      color: #ffbd73;
+      background: #ffab4d19;
+    }
+    .detail-icon::before { content: ""; width: 15px; height: 17px; border: 1.5px solid currentColor; border-radius: 3px; }
+    .icon-book::after { content: ""; position: absolute; width: 1.5px; height: 15px; background: currentColor; }
+    .icon-school::before { height: 11px; margin-top: 6px; border-top: 0; border-radius: 0 0 2px 2px; }
+    .icon-school::after { content: ""; position: absolute; top: 10px; width: 11px; height: 11px; border-top: 1.5px solid; border-left: 1.5px solid; transform: rotate(45deg); }
+    .icon-document::after { content: ""; position: absolute; width: 6px; height: 5px; border-block: 1.5px solid; }
     .certificate-image { display: block; width: 100%; height: auto; margin-top: 22px; border-radius: 10px; }
     .certificate-actions { display: flex; justify-content: center; margin-top: 22px; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 52px; padding: 12px 24px; border-radius: 10px; background: var(--gradient); color: #171717; font-size: 14px; font-weight: 800; text-align: center; text-decoration: none; text-transform: uppercase; }
@@ -80,6 +117,8 @@
     .payments { display: block; width: 80px; height: auto; margin-top: 5px; }
     @media (max-width: 850px) {
       .footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .details-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .detail-program { grid-column: 1 / -1; }
     }
     @media (max-width: 680px) {
       .header-inner { flex-direction: column; align-items: flex-start; gap: 13px; padding-block: 20px 12px; }
@@ -90,11 +129,16 @@
       .result-label { margin-bottom: 17px; }
       .program { margin-top: 15px; }
       .certificate-section { border-radius: 14px; }
-      .details-list { grid-template-columns: 1fr; }
       .certificate-image { margin-top: 14px; border-radius: 5px; }
       .certificate-actions { margin-top: 15px; }
       .button { width: 100%; font-size: 12px; padding-inline: 12px; }
       .footer-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .details-list { grid-template-columns: 1fr; margin-top: 19px; }
+      .detail-item { position: relative; padding: 14px 14px 14px 62px; }
+      .detail-item dd { margin-top: 3px; }
+      .detail-icon { position: absolute; top: 14px; left: 14px; margin-bottom: 0; }
     }
   </style>
 </head>
@@ -120,12 +164,23 @@
         <p class="program">Сертификат об окончании программы «Искусственный интеллект: от новичка до эксперта» школы LUNA13.</p>
       </section>
       <section class="certificate-section details" aria-labelledby="details-title">
-        <h2 id="details-title">Что подтверждает сертификат</h2>
-        <p>Сертификат подтверждает, что его владелец успешно прошёл обучение по указанной программе в школе LUNA13.</p>
+        <div class="details-heading">
+          <h2 id="details-title">Что подтверждает сертификат</h2>
+          <p>Этот документ выдают после успешного завершения обучения в школе LUNA13.</p>
+        </div>
         <dl class="details-list">
-          <div><dt>Программа обучения</dt><dd>Искусственный интеллект: от новичка до эксперта</dd></div>
-          <div><dt>Организация, выдавшая сертификат</dt><dd>Школа искусственного интеллекта LUNA13</dd></div>
-          <div><dt>Тип документа</dt><dd>Сертификат об окончании обучения</dd></div>
+          <div class="detail-item detail-program">
+            <dt><span class="detail-icon icon-book" aria-hidden="true"></span>Программа обучения</dt>
+            <dd>Искусственный интеллект: от новичка до эксперта</dd>
+          </div>
+          <div class="detail-item">
+            <dt><span class="detail-icon icon-school" aria-hidden="true"></span>Кем выдан</dt>
+            <dd>Школа искусственного интеллекта LUNA13</dd>
+          </div>
+          <div class="detail-item">
+            <dt><span class="detail-icon icon-document" aria-hidden="true"></span>Тип документа</dt>
+            <dd>Сертификат об окончании обучения</dd>
+          </div>
         </dl>
       </section>
       <section class="certificate-section" aria-labelledby="certificate-title">
